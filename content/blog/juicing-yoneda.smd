@@ -1,0 +1,31 @@
+---
+.title = "Juicing the Yoneda Lemma",
+.date = @date("2027-07-21T13:00:00-04:00"),
+.author = "Robbie Lyman",
+.layout = "post.shtml",
+.draft = true,
+---
+
+The Yoneda Lemma is perhaps the most famous result in category theory.
+One way of interpreting it is to say that you can reconstruct,
+up to isomorphism, an object in a category from its web of connections
+with other objects in that category.
+
+Category theory being the favorite pasttime of smart nerds
+afraid to get their hands dirty with the real work of mathematics
+(I should know, this describes me more often than note),
+it's easy to dismiss this observation as clever abstract nonsense,
+but there's really quite a lot of mileage you can get out of it.
+[Emily Riehl][Riehl] gives a great example in her excellent book [Category Theory In Context][Cat],
+using the "universal property" (see below) of the tensor product of two vector spaces
+to sketch how one might come up with the usual construction with "formal" tensors.
+
+As a group theorist interested more and more in topological groups,
+I'd like to attempt to do the same thing for free constructions on groups and topological groups.
+
+## The Yoneda Lemma
+
+I'm going to choose to start past the definitions of 
+
+[Riehl]: https://emilyriehl.github.io/
+[Cat]: https://emilyriehl.github.io/files/context.pdf
