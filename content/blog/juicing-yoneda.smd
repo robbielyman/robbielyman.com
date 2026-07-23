@@ -1,6 +1,6 @@
 ---
 .title = "Juicing the Yoneda Lemma",
-.date = @date("2027-07-21T13:00:00-04:00"),
+.date = @date("2027-07-21T14:00:00-04:00"),
 .author = "Robbie Lyman",
 .layout = "post.shtml",
 .draft = true,
@@ -25,7 +25,103 @@ I'd like to attempt to do the same thing for free constructions on groups and to
 
 ## The Yoneda Lemma
 
-I'm going to choose to start past the definitions of 
+I'm going to pick up where my [previous post]($link.page('blog/category-theory-day-one')) left off.
+Recall that for each locally small category [`C`]($mathtex) with object [`c`]($mathtex),
+we have a functor [`C(c,-) \colon C \to \mathrm{Set}`]($mathtex),
+sending an object [`d`]($mathtex) to the set of arrows [`\{ f\colon c \to d \}`]($mathtex).
+
+Moreover, if [`F \colon C \to \mathrm{Set}`]($mathtex) is an arbitrary set-valued functor,
+the Yoneda Lemma states that there is a natural bijection between natural transformations
+[`\alpha \colon C(c,-) \Rightarrow F`]($mathtex) and elements of the set [`Fc`]($mathtex)
+accomplished by sending a natural transformation [`\alpha`]($mathtex)
+to the element [`\alpha_c(1_c) \in Fc`]($mathtex).
+
+A _universal property_ of an object [`c \in C`]($mathtex)
+is a functor [`F \colon C \to \mathrm{Set}`]($mathtex)
+and an element [`x \in Fc`]($mathtex) such that the corresponding natural transformation
+[`\alpha(x) \colon C(c,-) \Rightarrow F`]($mathtex)
+provided by the Yoneda Lemma is a natural _isomorphism._
+
+## The Universal Property of the Free Group
+
+For example, suppose that [`X`]($mathtex) is a set.
+Given a group [`G`]($mathtex),
+we can associate to it the set of functions [`X \to G`]($mathtex);
+you can check that this association is functorial:
+the action of a homomorphism of groups [`G \to H`]($mathtex) induces
+a map from the set of functions [`X \to G`]($mathtex)
+to the set of functions [`X \to H`]($mathtex).
+
+The _free group on the set [`X`]($mathtex),_
+which I'll denote [`F(X)`]($mathtex),
+has the universal property expressed by this functor
+and a particular function [`\iota\colon X \to F(X)`]($mathtex).
+
+What this means in plainer terms is that any map [`f\colon X \to G`]($mathtex)
+from the set [`X`]($mathtex) to a group [`G`]($mathtex),
+corresponds (via the natural isomorphism)
+to a unique group homomorphism [`\Phi\colon F(X) \to G`]($mathtex).
+
+In terms of natural transformations of functors, we have the following,
+where both vertical arrows are post-composition with [`\Phi`]($mathtex).
+```=mathtex
+\begin{CD}
+\mathrm{Grp}(F(X), F(X)) @>{\cong}>> \mathrm{Set}(X, F(X)) \\
+@V{\Phi_*}VV @VV{\Phi_*}V \\
+\mathrm{Grp}(F(X), G) @>{\cong}>> \mathrm{Set}(X, G).
+\end{CD}
+```
+If we trace the identity of [`F(X)`]($mathtex) around this diagram,
+going right and down sends it first to [`\iota\colon X \to F(X)`]($mathtex)
+and then to [`\Phi \circ \iota`]($mathtex),
+while going down first and then right
+yields [`f\colon X \to G`]($mathtex) by assumption.
+
+In other words,
+every function of sets [`f\colon X \to G`]($mathtex)
+comes from (or extends to) a homomorphism of groups [`\Phi \colon F(X) \to G`]($mathtex).
+
+## Using a little juice
+
+So far so abstract.
+Let's get a bit more concrete.
+First, the map [`\iota`]($mathtex) is injective,
+since if [`x \ne y`]($mathtex),
+there is a function, say [`f\colon X \to \mathbb{Z}/2\mathbb{Z}`]($mathtex),
+where [`f(x) = 0`]($mathtex) but [`f(y) = 1`]($mathtex).
+Since this function is accomplished by a homomorphism [`\Phi\colon F(X) \to \mathbb{Z}/2\mathbb{Z}`]($mathtex),
+we see that [`\iota(x) \ne \iota(y)`]($mathtex),
+because their images under [`\Phi`]($mathtex) must be distinct.
+
+Actually, this observation has the interesting immediate
+_consequence_ of proving that for each cardinality [`\kappa`]($mathtex),
+there exists a group [`G`]($mathtex) of cardinality at least [`\kappa`]($mathtex).
+
+In light of the above, I will henceforth think of [`X`]($mathtex)
+as a _subset_ of [`F(X)`]($mathtex) via the canonical injective function [`\iota`]($mathtex),
+since there is no further risk of confusion.
+
+Next, we can use the Yoneda lemma to show that the subgroup of [`F(X)`]($mathtex)
+_normally generated_ by [`X`]($mathtex) is all of [`F(X)`]($mathtex).
+ Call this subgroup [`N`]($mathtex).
+By construction, the quotient map [`F(X) \to F(X)/N`]($mathtex)
+agrees on [`X`]($mathtex) with the function [`X \to F(X)/N`]($mathtex) sending each element to the identity.
+But so does the trivial homomorphism sending _every_ element of [`F(X)`]($mathtex) to the identity of [`F(X)/N`]($mathtex).
+By the universal property, then, these homomorphisms are equal,
+which implies that [`N = F(X)`]($mathtex).
+
+Let's be even a little more clever:
+let's show that [`\langle X \rangle = F(X)`]($mathtex) without needing to take normal closures.
+Suppose not, so that there is [`g \notin \langle X \rangle`]($mathtex).
+Consider the two functions [`f_1`]($mathtex) and [`f_2`]($mathtex) of sets [`F(X) \to F(X)`]($mathtex)
+defined so that both are the identity everywhere except [`g`]($mathtex), and that
+[`f_1(g) = g`]($mathtex) and [`f_2(g) = 1`]($mathtex).
+These correspond to homomorphisms [`\Phi_1`]($mathtex) and [`\Phi_2\colon F(F(X)) \to F(X)`]($mathtex).
+Composing with the homomorphism [`I \colon F(X) \to F(F(X))`]($mathtex)
+given by the inclusion of [`X`]($mathtex) into [`F(X)`]($mathtex),
+we see that [`f_1 \circ I`]($mathtex) is the identity (which implies [`I`]($mathtex) is injective),
+and that [`(f_1 \circ I)_X = (f_2 \circ I)|_X`]($mathtex),
+so these homomorphisms are equal.
 
 [Riehl]: https://emilyriehl.github.io/
 [Cat]: https://emilyriehl.github.io/files/context.pdf
