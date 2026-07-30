@@ -1,0 +1,195 @@
+---
+.title = "Topologies for Groups acting on Graphs",
+.date = @date("2026-07-30T10:00:00-04:00"),
+.author = "Robbie Lyman",
+.layout = "post.shtml",
+.draft = true,
+---
+
+This is a post about topology and about groups.
+While theoretically it is possible and in scope
+for me to introduce topology from the bottom up,
+I suspect that you won't get anything out of the story
+that I want to tell if it really is your first time
+seeing the definition of a topology, so I won't.
+However, if you know topology and groups separately,
+this is a perfect place to meet topological groups,
+since I'm going to talk only about pretty elementary things.
+
+# Topological Groups
+
+A _topological group_ is a group [`G`]($mathtex)
+which is at the same time a topological space
+so that multiplication [`(g,h) \mapsto g h`]($mathtex)
+and inversion [`g \mapsto g^{-1}`]($mathtex)
+are continuous as maps [`G \times G \to G`]($mathtex)
+and [`G \to G`]($mathtex) respectively.
+
+An _identity neighborhood_ is a an open subset of a topological group
+containing the identity, [`1`]($mathtex).
+Identity neighborhoods satisfy the following axioms.
++ If [`U, V`]($mathtex) are identity neighborhoods, so is [`U \cap V`]($mathtex).
++ If [`U`]($mathtex) is an identity neighborhood, so is [`g U g^{-1}`]($mathtex)
+  and [`U^{-1}`]($mathtex) for every [`g \in G`]($mathtex).
++ If [`U`]($mathtex) is an identity neighborhood, there is another identity neighborhood
+  [`V`]($mathtex) such that [`V^2 \subset U`]($mathtex).
+
+To clarify notation, [`g U g^{-1} = \{ g u g^{-1} : u \in U \}`]($mathtex),
+[`U^{-1} = \{ u^{-1} : u \in U \}`]($mathtex),
+and [`V^2 = \{ u v : u, v \in U \}`]($mathtex).
+The second bullet point follows from continuity of the map
+[`x \mapsto (g,x) \mapsto g x \mapsto (g x, g^{-1}) \mapsto g x g^{-1}`]($mathtex)
+and inversion, respectively,
+and the third bullet point follows from continuity of multiplication.
+
+A slight weakening of these axioms suffice to characterize group topologies.
+
+> **Proposition 1.**
+> Suppose that [`\mathcal{B}`]($mathtex) is a collection of subsets of a group [`G`]($mathtex)
+> satisfying the following axioms.
+> + We have [`1 \in U`]($mathtex) for all [`U \in \mathcal{B}`]($mathtex).
+> + For each [`U, V \in \mathcal{B}`]($mathtex), there exists [`W \in \mathcal{B}`]($mathtex)
+>   satisfying [`W \subset U \cap V`]($mathtex).
+> + For each [`U \in \mathcal{B}`]($mathtex), there exists [`V \in \mathcal{B}`]($mathtex)
+>   satisfying [`V^2 \subset U`]($mathtex).
+> + For each [`U \in \mathcal{B}`]($mathtex), there exists [`V \in \mathcal{B}`]($mathtex)
+>   satisfying [`V \subset U^{-1}`]($mathtex).
+> + For each [`U \in \mathcal{B}`]($mathtex) and [`g \in G`]($mathtex), there exists [`V \in \mathcal{B}`]($mathtex)
+>   satisfying [`V \subset g U g^{-1}`]($mathtex).
+>
+> Then there is a group topology on [`G`]($mathtex) where a subset [`S`]($mathtex) is open
+> if and only if for each [`g \in S`]($mathtex) there exists [`U \in \mathcal{B}`]($mathtex)
+> such that [`g U \subset S`]($mathtex).
+
+*Proof.*
+The claimed topology really is a topology:
+the defining property of open sets is clearly closed under arbitrary unions.
+If [`g \in g U \subset S`]($mathtex) and [`g \in g V \subset T`]($mathtex),
+then by assumption there exists [`W \subset U \cap V`]($mathtex)
+so that [`g W \subset S \cap T`]($mathtex),
+so finite intersections of open sets are open.
+
+Suppose [`g h \in S`]($mathtex) where [`S`]($mathtex) is open.
+To show that multiplication is continuous, we show that
+there are sets [`U, V \in \mathcal{B}`]($mathtex)
+so that [`g U h V \subset S`]($mathtex).
+Indeed, since [`S`]($mathtex) is open,
+it contains [`g h W`]($mathtex) for [`W \in \mathcal{B}`]($mathtex),
+and we choose [`U, V \in \mathcal{B}`]($mathtex)
+so that [`V^2 \subset W`]($mathtex)
+and [`U \subset h V h^{-1}`]($mathtex).
+We compute:
+```=mathtex
+g U h V \subset g h V h^{-1} h V = g h V^2 \subset g h W
+```
+as required.
+
+To show that inversion is continuous,
+given [`U \in \mathcal{B}`]($mathtex),
+take [`V \subset g U g^{-1}`]($mathtex)
+and [`W \subset V^{-1}`]($mathtex).
+Then
+```=mathtex
+g^{-1}W \subset g^{-1} V^{-1} \subset g^{-1} g U^{-1} g^{-1} = U^{-1} g^{-1} = {(g U)}^{-1}.
+```
+Thus this topology makes [`G`]($mathtex) a topological group. [`\QED`]($mathtex)
+
+# Groups acting on graphs
+
+Let [`G`]($mathtex) be a group acting on a connected, simplicial graph [`\Gamma`]($mathtex)
+by graph automorphisms without inversions in edges.
+_Simplicial_ means that between two vertices of [`\Gamma`]($mathtex), there is at most one edge,
+and that no edge forms a loop.
+_Without inversions in eges_ means that if an edge of [`\Gamma`]($mathtex)
+is fixed setwise by a group element, it is fixed pointwise.
+A consequence of this latter condition is that the stabilizers of an edge [`e`]($mathtex)
+incident to the vertices [`v`]($mathtex) and [`w`]($mathtex)
+is naturally a subgroup of the stabilizers of both [`v`]($mathtex) and [`w`]($mathtex).
+Another is that the quotient map [`\Gamma \to G \backslash \Gamma`]($mathtex) is a graph map.
+
+> **Proposition 2.**
+> Suppose [`G`]($mathtex) acts on a connected, simplicial graph [`\Gamma`]($mathtex)
+> by graph automorphisms without inversions in edges,
+> and that for each vertex [`v \in \Gamma`]($mathtex),
+> the stabilizer [`G_v`]($mathtex) is equipped with a group topology
+> such that the following conditions hold.
+> + For each [`g \in G`]($mathtex), conjugation by [`g`]($mathtex)
+>   induces a homeomorphism [`G_v \to g G_v g^{-1} = G_{g.v}`]($mathtex).
+> + If [`e`]($mathtex) is an edge of [`\Gamma`]($mathtex)
+>   incident to vertices [`v`]($mathtex) and [`w`]($mathtex),
+>   the inclusion of the stabilizer [`G_e`]($mathtex) into [`G_v`]($mathtex)
+>   and [`G_w`]($mathtex) yields the same topology on [`G_e`]($mathtex),
+>   such that both inclusions are open embeddings.
+>
+> Then the family [`\mathcal{B} = \{ U \subset G_v : U \text{ is an identity neighborhood } \}`]($mathtex)
+> satisfies the hypotheses of Proposition 1.
+> The induced topology on [`G`]($mathtex) is the finest group topology on [`G`]($mathtex)
+> such that each inclusion [`G_v \to G`]($mathtex) is an open embedding.
+> In this topology the group [`G`]($mathtex) acts continuously on [`\Gamma`]($mathtex).
+
+_Proof._
+We verify the hypotheses of **Proposition 1.**
+The first, that each [`U \in \mathcal{B}`]($mathtex) contains the identity, is clear,
+as are the third and fourth, since each [`G_v`]($mathtex) is a topological group.
+The final hypothesis, about conjugation, holds by definition.
+Thus we need only verify that [`U \cap V`]($mathtex) contains an element of [`\mathcal{B}`]($mathtex).
+Supposing that [`U \subset G_u`]($mathtex) and [`V \subset G_v`]($mathtex)
+for vertices [`u, v \in \Gamma`]($mathtex),
+we will show this by induction on the distance between [`u`]($mathtex) and [`v`]($mathtex).
+More precisely, given any geodesic edge path from [`u`]($mathtex) to [`v`]($mathtex),
+we show that the subset of [`U \cap V`]($mathtex)
+which additionally stabilizes this path pointwise belongs to [`\mathcal{B}`]($mathtex),
+and is in fact an identity neighborhood in both [`G_u`]($mathtex)
+and [`G_v`]($mathtex).
+
+The base case where distance [`0`]($mathtex) (i.e. [`u = v`]($mathtex)) holds because
+[`G_v`]($mathtex) is a topological group.
+
+when [`u`]($mathtex) and [`v`]($mathtex) are connected by an edge [`e`]($mathtex),
+the intersection [`U \cap V`]($mathtex) is contained in the edge stabilizer [`G_e`]($mathtex).
+
+Suppose now that the result holds for all pairs [`U`]($mathtex) and [`V`]($mathtex)
+at distance at most [`n`]($mathtex), we prove the statement for vertices at distance [`n + 1`]($mathtex).
+Let [`e_0 \ldots e_n`]($mathtex) be a geodesic edge path from [`u`]($mathtex) to [`v`]($mathtex),
+and let [`w`]($mathtex) be the initial vertex of [`e_n`]($mathtex).
+
+By induction, the subset of the intersection [`U \cap G_w`]($mathtex)
+which stabilizes the (possibly trivial) path [`e_0 \ldots e_{n-1}`]($mathtex)
+is an identity neighborhood in both [`G_u`]($mathtex) and [`G_w`]($mathtex).
+Call this subset [`W`]($mathtex).
+
+Since [`G_{e_n}`]($mathtex) inherits the same topology as an open subgroup of each
+of [`G_v`]($mathtex) and [`G_w`]($mathtex),
+we see that [`V \cap W \subset G_{e_n}`]($mathtex) is an open identity neighborhood
+in both [`G_v`]($mathtex) and [`G_w`]($mathtex).
+The subset of [`U \cap V`]($mathtex)
+stabilizing [`e_0 \ldots e_n`]($mathtex) is clearly contained in [`V \cap W`]($mathtex),
+and the reverse is also true: if [`g \in V \cap W`]($mathtex),
+then by assumption [`g \in U \cap V`]($mathtex) stabilizes the path [`e_0 \ldots e_{n-1}`]($mathtex)
+and also [`v`]($mathtex), whence since [`\Gamma`]($mathtex)
+is simplicial, it stabilizes the whole path.
+
+Finally, to see that this topology [`\tau`]($mathtex) is the finest group topology on [`G`]($mathtex)
+such that each inclusion [`G_v \to G`]($mathtex) is an open embedding,
+observe that any group topology [`\tau'`]($mathtex) satisfying this latter hypothesis
+actually makes each [`U \in \mathcal{B}`]($mathtex) into an identity neighborhood,
+so the identity map [`(G,\tau') \to (G,\tau)`]($mathtex) is continuous, as required.
+[`\QED`]($mathtex).
+
+**Proposition 2** has an immediate consequence for certain (2-categorical) colimits
+in the category of topological groups.
+
+> **Corollary 3.**
+> Suppose [`\mathcal{G}`]($mathtex) is a connected graph of topological groups
+> such that each edge-to-vertex group homomorphism is an open embedding.
+> The fundamental group of the graph of groups [`\pi_1(\mathcal{G})`]($mathtex)
+> is canonically a topological group. [`\QED`]($mathtex)
+
+One limitation of **Corollary 3** is that it is not strong enough to topologize
+some of the most familiar tree-like constructions on groups.
+For example, I'll close by leaving you to ponder the following.
+
+> **Exercise 4.** Suppose [`G_1,\ldots,G_n`]($mathtex) are groups.
+> The only topology on their free product [`G_1 * \cdots * G_n`]($mathtex)
+> which makes the action on the natural Bass-Serre tree associated to the free product
+> continuous is the discrete topology. [`\QED`]($mathtex)
