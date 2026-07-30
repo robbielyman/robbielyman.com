@@ -1,6 +1,6 @@
 ---
 .title = "Category Theory Day One",
-.date = @date("2027-07-21T13:00:00-04:00"),
+.date = @date("2026-07-21T13:00:00-04:00"),
 .author = "Robbie Lyman",
 .layout = "post.shtml",
 .draft = false,
