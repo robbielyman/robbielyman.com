@@ -1,7 +1,6 @@
 ---
 .title = "The Urysohn Lemma",
-.date = @date("2026-01-01T12:00:00-05:00"),
-.author = "Robbie Lyman",
+.date = .date("2026-01-01T12:00:00-05:00"),
 .layout = "post.shtml",
 .draft = true,
 ---

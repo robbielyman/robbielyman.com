@@ -1,7 +1,6 @@
 ---
 .title = "Juicing the Yoneda Lemma",
-.date = @date("2027-07-21T14:00:00-04:00"),
-.author = "Robbie Lyman",
+.date = .date("2027-07-21T14:00:00-04:00"),
 .layout = "post.shtml",
 .draft = true,
 ---

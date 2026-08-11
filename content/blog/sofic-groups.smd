@@ -1,7 +1,6 @@
 ---
 .title = "Who's afraid of a non sofic group",
-.date = @date("2026-08-02T17:00:00-04:00"),
-.author = "Robbie Lyman",
+.date = .date("2026-08-02T17:00:00-04:00"),
 .layout = "post.shtml",
 .draft = false,
 ---

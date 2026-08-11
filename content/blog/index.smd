@@ -1,9 +1,8 @@
 ---
 .title = "Blog",
-.date = @date("2025-11-11T19:00:00-05:00"),
-.author = "Robbie Lyman",
+.date = .date("2025-11-11T19:00:00-05:00"),
 .layout = "blog.shtml",
-.alternatives = [{ 
+.alternatives = [.{ 
     .name = "rss",
     .layout = "blog.xml", 
     .output = "index.xml",

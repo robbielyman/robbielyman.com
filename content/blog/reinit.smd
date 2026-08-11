@@ -1,7 +1,6 @@
 ---
 .title = "Reinit / How to Draw a Triangle in Three Years",
-.date = @date("2025-11-11T19:00:00-05:00"),
-.author = "Robbie Lyman",
+.date = .date("2025-11-11T19:00:00-05:00"),
 .layout = "post.shtml",
 .draft = false,
 ---

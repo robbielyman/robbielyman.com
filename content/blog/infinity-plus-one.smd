@@ -1,7 +1,6 @@
 ---
 .title = "Nuh-uh! Infinity plus one!",
-.date = @date("2026-05-23T16:00:00-05:00"),
-.author = "Robbie Lyman",
+.date = .date("2026-05-23T16:00:00-05:00"),
 .layout = "post.shtml",
 .draft = false,
 ---
@@ -12,7 +11,7 @@ and a brief advertisement for a result
 I proved with [George Domat](https://sites.google.com/view/georgedomat/home), and [Hannah Hoganson](https://www.math.umd.edu/~hoganson/).
 The paper is now available [on the arXiv.](https://arxiv.org/abs/2607.01196)
 
-## Nuh-uh! Infinity plus one!
+# Nuh-uh! Infinity plus one!
 
 I'm sure you've probably spent enough time
 with children or were once a child to remember
@@ -25,7 +24,7 @@ and you _have_ to top that, so you say
 "Nuh-uh! Infinity _plus one!_"
 At a vibes level, ordinal numbers in mathematics are a way to actually take that idea seriously.
 
-## Two definitions
+# Two definitions
 
 A _totally ordered set_ is a set [`S`]($mathtex)
 with an order [`>`]($mathtex);
@@ -64,7 +63,7 @@ Here is a picture representing [`\omega + 1`]($mathtex).
 
 []($image.asset('figure.svg'))
 
-## Ordinal arithmetic
+# Ordinal arithmetic
 
 Given two totally ordered sets [`X`]($mathtex) and [`Y`]($mathtex),
 you can produce a new one [`X + Y`]($mathtex) by sticking them "end-to-end"

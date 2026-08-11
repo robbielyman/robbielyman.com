@@ -1,7 +1,6 @@
 ---
 .title = "Topologies, Groups, Graphs",
-.date = @date("2026-07-30T10:00:00-04:00"),
-.author = "Robbie Lyman",
+.date = .date("2026-07-30T10:00:00-04:00"),
 .layout = "post.shtml",
 .draft = false,
 ---
@@ -142,10 +141,9 @@ which additionally stabilizes this path pointwise belongs to [`\mathcal{B}`]($ma
 and is in fact an identity neighborhood in both [`G_u`]($mathtex)
 and [`G_v`]($mathtex).
 
-The base case where distance [`0`]($mathtex) (i.e. [`u = v`]($mathtex)) holds because
+The base case where the distance is [`0`]($mathtex) (i.e. [`u = v`]($mathtex)) holds because
 [`G_v`]($mathtex) is a topological group.
-
-when [`u`]($mathtex) and [`v`]($mathtex) are connected by an edge [`e`]($mathtex),
+When [`u`]($mathtex) and [`v`]($mathtex) are connected by an edge [`e`]($mathtex),
 the intersection [`U \cap V`]($mathtex) is contained in the edge stabilizer [`G_e`]($mathtex).
 
 Suppose now that the result holds for all pairs [`U`]($mathtex) and [`V`]($mathtex)
