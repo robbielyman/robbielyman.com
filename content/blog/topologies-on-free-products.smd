@@ -251,6 +251,15 @@ and posted a math paper to the arXiv within the past two years.
 
 # Some Topologies
 
+> *Update, 16 August 2026:* Just a note to say that some of this section is not correct.
+In particular, none of the proposed families of identity neighborhoods
+below appear to be closed under products.
+The problem being that while it is true that [`(gUg^{-1})^2 = gU^2g^{-1}`]($mathtex),
+the actual products of elements of the families below must contain elements
+which are not conjugate into any vertex stabilizer.
+I noticed this while thinking about the neighboring case of free topological groups.
+If I find a fix, it will appear in a later post.
+
 In [the previous post alluded to earlier]($link.page('blog/topologies-for-groups')),
 we found a set of axioms characterizing group topologies
 in terms of their identity neighborhoods.
