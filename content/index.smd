@@ -3,6 +3,7 @@
 .date = .date("2025-08-06T14:31:00-04:00"),
 .layout = "index.shtml",
 .draft = false,
+.description = "Robbie Lyman is a polymath based in Brooklyn, New York."
 --- 
 
 []($image.siteAsset('headshot-2025.jpeg'))

@@ -11,6 +11,12 @@
 		<script defer src="$site.asset('temml.min.js').link()"></script>
 		<script defer src="$site.asset('render-mathtex.js').link()"></script>
 		<!-- /mathtex -->
+		<!-- Twitter Card Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:site" content="@robbielyman.com">
+		<meta name="twitter:title" content="$page.title">
+		<meta name="twitter:description" content="$page.description">
+		<meta name="twitter:image" content="$page.custom.getOr('image', $site.host_url.addPath($site.asset('headshot-2025.jpeg').link()))">
 		<super>
 	</head>
 	<body id="body">
@@ -20,6 +26,7 @@
 				<li><a href="$site.page('').link()">Home</a></li>
 				<li><a href="$site.page('about').link()">About</a></li>
 				<li><a href="$site.page('math').link()">Math</a></li>
+				<li><a href="$site.page('math/colloquium').link()">RU-N Colloquium</a></li>
 				<li><a href="$site.page('blog').link()">Blog</a></li>
 			</ul>
 		</nav>
