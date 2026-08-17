@@ -65,6 +65,8 @@ html {
 
 img {
  width: min(650px, 95%);
+ display: block;
+ margin: 0 auto;
 }
 
 body {
