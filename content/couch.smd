@@ -1,0 +1,15 @@
+---
+.title = "Couch",
+.date = .date("2026-08-31T13:00:00-04:00"),
+.draft = false,
+.layout = "index.shtml",
+---
+
+Hello. These are photos of the couch.
+As you can see, there is some sun discoloration from when it sat against a south-facing window.
+It takes well to a lint roller, the coushins are washable, and the style of fabric is great for cats;
+unlike our previous couch, this one has been with 2 cats for 6 years and lived to tell the tale.
+
+[]($image.siteAsset("couch-1.jpg"))
+
+[]($image.siteAsset("couch-2.jpg"))
