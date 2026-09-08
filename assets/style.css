@@ -99,6 +99,13 @@ nav > ul {
   margin-bottom: 0;
 }
 
+@media (max-width: 489px) {
+  nav > ul {
+    flex-direction: column;
+    margin-left: 50px;
+  }
+}
+
 .block {
   border: 1px dotted white;
   padding: 5px 15px;
