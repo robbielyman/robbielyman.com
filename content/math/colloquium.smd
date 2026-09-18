@@ -1,7 +1,7 @@
 ---
 .title = "Rutgers Newark Math Colloquium",
 .date = .date("2026-08-17T17:00:00-04:00"),
-.layout = "post.shtml",
+.layout = "page.shtml",
 .draft = false,
 ---
 
@@ -17,21 +17,42 @@ please email [Robbie Lyman](mailto:robbie.lyman@rutgers.edu).
 For speakers, we recommend this [short collection of guidelines](https://pages.uoregon.edu/njp/guidelines.html)
 on giving a great colloquium talk.
 
-| Date | Speaker | Title |
-|:---|:---:|---:|
-| September 2 | *No Colloquium* | |
-| September 9 | *No Colloquium* | |
-| September 16 | *No Colloquium* | |
-| September 23 | Luya Wang (IAS) | TBA |
-| September 30 | Michael Dougherty (Lafayette) | TBA |
-| October 7 | *No Colloquium* | |
-| October 14 | Spencer Leslie (Boston College, IAS) | TBA |
-| October 21 | TBD | TBD |
-| October 28 | Jeremy Brazas (West Chester) | TBA |
-| November 4 | Timothy Bates (Rutgers New Brunswick) | TBA |
-| November 11 | Gabriel Corrigan (Glasgow) | TBA |
-| November 18 | Kristen Hendricks (Rutgers New Brunswick) | TBA |
-| November 25 | *No Colloquium* | |
-| December 2 | TBD | TBD |
-| December 9 | Hannah Hoganson (UMD) | TBA |
+| Date | Speaker |
+|:---|---:|
+| September 2 | *No Colloquium* |
+| September 9 | *No Colloquium* |
+| September 16 | *No Colloquium* |
+| September 23 | [Luya Wang (IAS)](<$link.ref("Luya Wang")>) |
+| September 30 | Michael Dougherty (Lafayette) |
+| October 7 | *No Colloquium* |
+| October 14 | Spencer Leslie (Boston College, IAS) |
+| October 21 | TBD |
+| October 28 | Jeremy Brazas (West Chester) |
+| November 4 | Timothy Bates (Rutgers New Brunswick) |
+| November 11 | Gabriel Corrigan (Glasgow) |
+| November 18 | Kristen Hendricks (Rutgers New Brunswick) |
+| November 25 | *No Colloquium* |
+| December 2 | TBD |
+| December 9 | Hannah Hoganson (UMD) |
+
+# Abstracts
+
+## Luya Wang [](<$section.id("Luya Wang")>)
+
+### Title: Interactions between smooth and symplectic topology
+
+># [**Abstract**]($block.collapsible(true))
+> Symplectic structures roughly lie between smooth topology and complex geometry
+> and exhibit both flexible and rigid phenomena.
+> However, we still do not have a good understanding of what a general symplectic manifold should look like.
+>
+> In this talk, I will begin by surveying some classical results of Gromov and McDuff from the 1980s,
+> which use pseudoholomorphic curves to classify symplectic manifolds containing certain distinguished submanifolds.
+>
+> I will then discuss a question of Donaldson in the 1990s,
+> which relates smooth structures in dimension four to symplectic structures in dimension six.
+>
+> Finally, I will describe some recent refinements of the Gromov-McDuff techniques
+> and their applications to classification problems in the compact setting,
+> which has many interactions with low-dimensional topology.
 
