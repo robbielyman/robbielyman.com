@@ -23,7 +23,7 @@ on giving a great colloquium talk.
 | September 9 | *No Colloquium* |
 | September 16 | *No Colloquium* |
 | September 23 | [Luya Wang (IAS)](<$link.ref("Luya Wang")>) |
-| September 30 | Michael Dougherty (Lafayette) |
+| September 30 | [Michael Dougherty (Lafayette)](<$link.ref("Michael Dougherty")>) |
 | October 7 | *No Colloquium* |
 | October 14 | Spencer Leslie (Boston College, IAS) |
 | October 21 | TBD |
@@ -41,7 +41,7 @@ on giving a great colloquium talk.
 
 ### Title: Interactions between smooth and symplectic topology
 
-># [**Abstract**]($block.collapsible(true))
+># [**Abstract**]($block.collapsible(false))
 > Symplectic structures roughly lie between smooth topology and complex geometry
 > and exhibit both flexible and rigid phenomena.
 > However, we still do not have a good understanding of what a general symplectic manifold should look like.
@@ -56,3 +56,12 @@ on giving a great colloquium talk.
 > and their applications to classification problems in the compact setting,
 > which has many interactions with low-dimensional topology.
 
+## Michael Dougherty [](<$section.id("Michael Dougherty")>)
+
+### Title: Geometric Combinatorics for Complex Polynomials
+># [**Abstract**]($block.collapsible(true))
+> Spaces of complex polynomials contain a surprising amount of combinatorial structure,
+> particularly in connections to noncrossing partitions.
+> In this talk we will discuss how to extract this noncrossing data from a polynomial
+> and how it determines a compactification and cell structure for a space of polynomials.
+> This is joint work with Jon McCammond.
