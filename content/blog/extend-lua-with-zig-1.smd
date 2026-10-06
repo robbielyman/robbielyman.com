@@ -204,7 +204,7 @@ which in this case is treated as an empty tuple.
 
 A fellow nerd might be surprised and pleased to note that `std.debug.print`
 and other string formatting functions are implemented entirely in userspace
-using comptime Zig rather than macros or special builting privileges.
+using comptime Zig rather than macros or special builtin privileges.
 
 Finally, it's worth noting that our program does not quite work as probably intended:
 The "Hello World!" is printed to `stderr` rather than to `stdout`.
