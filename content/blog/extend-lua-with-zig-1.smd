@@ -1,6 +1,6 @@
 ---
 .title = "Extend Lua with Zig 1: Hello World",
-.date = .date("2027-09-29T21:00:00-04:00"),
+.date = .date("2026-10-05T21:00:00-04:00"),
 .layout = "post.shtml",
 .draft = false,
 ---
@@ -102,7 +102,7 @@ Consider the following Lua code.
 local std = require 'std'
 local the_answer = 42
 ```
-When the file containing this code is loaded, Lua will run both of these statemnts.
+When the file containing this code is loaded, Lua will run both of these statements.
 The first one will cause a hypothetical library named `std` to be passed to
 `require`
 (which is Lua's `@import()`, but which unlike `@import()`
@@ -203,7 +203,7 @@ Here we aren't printing out anything so we pass `.{}`,
 which in this case is treated as an empty tuple.
 
 A fellow nerd might be surprised and pleased to note that `std.debug.print`
-and other string formatting functions are implemented entirely in userspace
+and other string formatting functions are implemented entirely in userland
 using comptime Zig rather than macros or special builtin privileges.
 
 Finally, it's worth noting that our program does not quite work as probably intended:
