@@ -1,0 +1,360 @@
+---
+.title = "Extend Lua with Zig 1: Hello World",
+.date = .date("2027-09-29T21:00:00-04:00"),
+.layout = "post.shtml",
+.draft = false,
+---
+Recently I had the opportunity to get somebody
+up and running with Zig and Lua for the third or fourth time.
+That's plenty of times enough to write a blog post about it.
+
+In this post I'll assume that you know the basics of writing Lua.
+I won't assume you know much at all about Zig; we'll run "Hello World" together.
+My goal by the end of the series
+is to have you able to run your own Zig function from Lua.
+Along the way we'll learn a bit about Zig's syntax,
+its build system, and how to use other Zig code in yours.
+
+Code in this blog post should work on both Zig 0.17 and the master branch.
+If you code along to this post and one of the following statements is true,
+please email me and I'll fix up the blog post. Please email me if either
+  - The latest stable version of Zig is not 0.17.0
+  - The code fails to compile on the latest stable or master branch.
+
+# Hello World - One
+
+Here's a "Hello World" in Zig.
+
+```zig
+// hello.zig
+const std = @import("std");
+
+pub fn main() void {
+    std.debug.print("Hello World!\n", .{});
+}
+```
+
+We'll talk about it in a second,
+but first let's run it.
+
+## Installing Zig
+
+You can grab a release build of Zig from [Ziglang.org](https://ziglang.org/download).
+This is my recommendation for how to install Zig.
+Find the OS and architecture that matches your setup and download a tarball.
+The first group of options is for the master branch, and the next group is the most recent stable version.
+After you unzip, move or symlink the contents of the tarball onto your path.
+There is both a binary `zig` and a couple of folders inside the tarball.
+You should more or less move them together.
+
+If you are pickier than me about any of this, you also probably don't need my help.
+Many Linux distributions package Zig.
+
+To run the file above, run the command `zig run hello.zig` in a terminal.
+The `run` is a subcommand of `zig`.
+The list of all subcommands will print if you just run `zig` with no arguments.
+
+## Understanding Hello World
+
+Lua is a great language to know before learning Zig,
+because a lot of the metaphors are identical.
+Just as a file of Lua is implicitly a _function,_
+so too is every file of Zig implicitly a _namespace,_ which in Zig means a `struct`.
+
+### `@import()` and `comptime`
+
+In Lua, loading a file runs the "script" parts of the code that it contains.
+So too, in Zig, does compiling (which is to say "semantically analyzing")
+a file run the "script" parts of the code that it contains.
+In our Hello World program above, there is one (small) piece of that:
+the two lines of Zig code below are syntactically nearly identical.
+```zig
+const std = @import("std");
+const the_answer = 42;
+```
+What's interesting is that they are also semantically more or less identical:
+they declare a constant scoped to their largest containing block
+(= namespace if we're outside of a function)
+whose value is on the right hand side of the `=` sign.
+
+One difference, you might argue, is the funky `@`-symbol.
+The `@import()` looks like a function call, and it almost is:
+the `@`-symbol at the beginning tells you that `@import()` is a _compiler builtin_ function
+and not a piece of userland code.
+Compiler builtins are allowed special powers that regular functions cannot have.
+The special power of `@import()` is that you _must_ feed it a string literal.
+In any other function in Zig, the following would be allowed.
+```zig
+const literal = "literal string";
+userlandFunction(literal);
+```
+
+But beyond that, `@import()` is honestly not that special.
+It is tasked with matching the string literals you feed it
+with Zig source files that exist either in your project,
+projects you depend on, or the standard library.
+So in a literal sense its role cannot be replicated in userland code,
+but its magical powers of operating at compile time are actually _not_ special to `@import()`,
+and the line `const the_answer = 42;` is actually _not different._
+Consider the following Lua code.
+
+```lua
+local std = require 'std'
+local the_answer = 42
+```
+When the file containing this code is loaded, Lua will run both of these statemnts.
+The first one will cause a hypothetical library named `std` to be passed to
+`require`
+(which is Lua's `@import()`, but which unlike `@import()`
+could be at least overwritten,
+if not implemented, in userland)
+and the result will be stored in a local variable named `std`.
+The second stores `42` in a local named `the_answer`.
+
+So, the punchline here is that Zig code can (and will) be executed at compile time.
+The rule of thumb here is that comptime code execution is _eager_
+with the exception of calling (normal) functions.
+If you want to call a function named `foo` at compile time, you can write `comptime foo()`.
+Some contexts, like the top level scope of a file
+(or other container like a `struct`)
+or where you are declaring the type of something
+implicitly begin with the word `comptime`;
+if you add the word `comptime` where it is redundant,
+the compiler will give you an error asking you to spell it the right way.
+
+### Differences between Comptime Zig and Lua
+
+One difference between Lua and Zig is that because
+top level scope is not a function in Zig,
+you cannot run the following procedural code at top level scope.
+```zig
+var number = 1;
+for (0..6) |i| {
+    number = number * (2 * i + 1);
+}
+```
+If you want to run some procedural code at compile time, put it in a block:
+```zig
+const number = comptime final: {
+    var number = 1;
+    for (0..6) |i| {
+         number = number * (2 * i + 1);
+    }
+    break :final number;
+}
+```
+Notice that blocks can be named and can yield a value.
+The equivalent in Lua would be
+```lua
+local number = 1
+do
+  for i =0, 6 do
+    number = number * (2 * i + 1)
+  end  
+end
+```
+In Lua, the `do end` block is not necessary, but it is in Zig.
+
+The other main difference is that in Lua,
+even function declarations can be "anonymous":
+```lua
+local main = function() print("Hello World!") end
+```
+In Zig, the only way to declare a function is to name it.
+If you want to assign a function to something, you need to escape to container scope first.
+We'll see an example of doing this later on.
+
+## Public declarations
+Just as, in Lua, variables can be global or local, with one case (global) left as default,
+so too can values (called _declarations_) at container scope in Zig.
+Here "local" is the default, and means that the declaration is visible
+only to code inside the same file.
+We therefore _must_ mark `main` as `pub` because this function
+is called by Zig code not contained in our file!
+Typically that code comes from the Zig standard library's `start.zig` file,
+although that behavior can be overridden.
+Similar to Rust, Zig uses `fn` rather than `function` or C's ... nothing
+and puts the return type after the list of arguments.
+
+The call to `std.debug.print` is likely familiar except for the `.{}`.
+This `.{}` syntax is the typical way to initialize a container
+like a struct, an array or a union in Zig;
+you fill out the fields inside by writing `.field = value`.
+The ubiquity of the little `.` tends to bother some people initially.
+It's there to make the syntax of Zig simpler (in a language-theoretic sense) to parse.
+
+### Genericity
+The function `std.debug.print` has signature
+```zig
+pub fn print(comptime fmt: []const u8, args: anytype) void {
+    // ...
+}
+```
+This is an example of a generic function.
+All ordinary functions in Zig are (at least in principle) generic over their `comptime` parameters,
+the type of their `anytype` parameters and any container-scope `comptime` values they close over.
+The `fmt` string is marked comptime-known so that the type of `args` can be validated
+and the necessary code generated at compile time.
+(By the way, `[]const u8` means a slice of immutable bytes.
+In Rust a similar type might be `[&]u8`.
+Zig string literals are encoded as UTF-8 and are nul-terminated,
+but Zig does not have a more dedicated "string" type.)
+Here we aren't printing out anything so we pass `.{}`,
+which in this case is treated as an empty tuple.
+
+A fellow nerd might be surprised and pleased to note that `std.debug.print`
+and other string formatting functions are implemented entirely in userspace
+using comptime Zig rather than macros or special builting privileges.
+
+Finally, it's worth noting that our program does not quite work as probably intended:
+The "Hello World!" is printed to `stderr` rather than to `stdout`.
+This is a working-as-intended feature of `std.debug.print`.
+Writing to `stdout` requires a little more boilerplate,
+which I'll include once we've set up Lua.
+
+# Add a Build Script
+
+So far so good.
+In order to work with Lua,
+we'll also need to use Zig's build system.
+We'll start by adding a `build.zig` script to run our `hello.zig` file.
+
+Start here
+```zig
+// build.zig
+const std = @import("std");
+
+pub fn build(b: *std.Build) void {
+    _ = b;
+}
+```
+
+This script will be compiled and executed by calling `zig build`
+from the directory containing it.
+The name `build` and the single argument are obligatory.
+
+The next two lines are conventionally the following:
+```diff zig
+--- build.zig
++++ build.zig
+@@ -4,3 +4,5 @@
+pub fn build(b: *std.Build) void {
+-    _ = b;
++    const target = b.standardTargetOptions(.{});
++    const optimize = b.standardOptimizeOption(.{});
+}
+```
+
+The `target` options specify things like the OS,
+the machine architecture, and the ABI which our code will be compiled for.
+Passing `.{}` (which coerces to the default values of an options struct here)
+allows the user to pass their desired target on the command line after a `-Dtarget=` prefix
+and will default to the `native` target.
+The `optimize` option can be `debug` (the default), `fast`, `safe` or `small`.
+The latter options are "release" build variants which prioritize execution speed,
+memory safety features like overflow and bounds checks,
+or code size on disk, respectively.
+
+Next we'll put our `hello.zig` code into what the Build system calls a "module".
+Modules can become executables, C-style libraries, or be compiled into
+further Zig modules (possibly in depending projects).
+Modules need a root source file and ours will receive our target and optimization options.
+```diff zig
+--- build.zig
++++ build.zig
+@@ -5,2 +5,8 @@
+    const target = b.standardTargetOptions(.{});
+    const optimize = b.standardOptimizeOption(.{});
++	
++    const module = b.addModule("hello-lua", .{
++        .root_source_file = b.path("hello.zig"),
++        .target = target,
++        .optimize = optimize,
++    });
+```
+By the way, if you omit that final trailing comma after `optimize`, Zig's auto-formatting tool, `zig fmt`,
+will put the whole function call on one line.
+If you wrote it on one line but included the comma after `optimize`,
+`zig fmt` will make it look like the above.
+If you are working with LSP support, it's likely that this autoformatter will run on save.
+Certain kinds of syntax errors will prevent `zig fmt` from doing anything,
+so you'll need to resolve those on your own first.
+
+The `b.path()` call is the Zig Build system's method for dealing with the filesystem.
+The added layer of indirection allows the build system to deal uniformly with
+filepaths that may belong to dependencies, or may be created by earlier steps
+in the build process.
+This should be a relative path.
+By the way, let me mention two restrictions of `@import()`.
+In addition to named modules like `std`, `@import()` can be given relative paths.
+These relative paths cannot reach outside the subtree below the directory
+containing the current module's root source file.
+Additionally, each file can belong to at most one module.
+
+So in a situation with `A/root.zig`,`B/main.zig` and `B/utils.zig`,
+the `root.zig` file cannot use `@import` to include `main.zig` or `utils.zig`,
+while `main.zig` and `utils.zig` are free to include each other (at the same time, even).
+In the event that `main.zig` and `root.zig` both want to import `utils.zig`,
+any project containing them both must be structured so that `utils.zig`
+is a module which is imported by both projects.
+
+Next we'll compile our module into an executable.
+```diff zig
+--- build.zig
++++ build.zig
+@@ -8,5 +8,11 @@
+    const module = b.addModule("hello-lua", .{
+        .root_source_file = b.path("hello.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
++
++    const exe = b.addExecutable(.{
++        .name = "hello-lua",
++        .root_module = module,
++    });
++    b.installArtifact(exe);
+```
+This is a (provisionally) complete build script;
+running it with `zig build` will compile `hello.zig`
+into an executable named `hello-lua` and place it into `zig-out/bin`
+relative to where you ran `zig build`.
+The build system can also _run_ the compiled artifact once it is compiled,
+but it needs us to ask it to.
+
+So let's ask:
+```diff zig
+--- build.zig
++++ build.zig
+@@ -18,2 +18,8 @@
+    b.installArtifact(exe);
++
++    const run_step = b.step("run", "Run the executable");
++    const run = b.addRunArtifact(exe);
++    run.addPassthruArgs();
++    run_step.dependOn(&run.step);
++    run.step.dependOn(b.getInstallStep());
+}
+```
+The first new line creates a new named "step" in our Build graph called "run".
+The step can be run by calling `zig build run`.
+The second argument is the help text that is displayed to the user next to the step when they run `zig build -h`.
+
+The second line creates a step in the build graph to run the program `exe`,
+and the third line passes any command line arguments the user adds to `zig build run`
+after a `--` argument to the call to `exe`.
+The fourth and fifth lines are kind of funny looking at first.
+The fourth one says that our named step `run_step` depends on `run.step`.
+What this means is that `zig build run` needs `run` to execute, so that matches our expectations.
+
+The `&` operator is identical to what it is in C: Zig has pointers but nothing smarter.
+`step` is a field on `run`, which if you have an LSP running, you'll see is a pointer.
+The `.` operator automatically functions as either C's `.` or `->` operators depending
+on the type of the left-hand side. So `&foo.bar` takes the address of the `bar` field on `foo`
+(or on `foo.*` if `foo` is a pointer type).
+
+Finally, the last line says that our executable will be installed before it is run.
+Strictly speaking this is not necessary, but it will be convenient for us in the next post.
+
+Okey-dokey! We wrote our first hello world _and_ our first `build.zig` script in this post.
+That's awesome!

@@ -16,17 +16,53 @@ code.diff {
   }
 }
 
-code.fish, code.sh {
-  .constant {
-    color: var(--lavender);
+code.diff {
+  .punctuation_special.diff_minus {
+    color: var(--red);
   }
-  .function {
+  .diff_minus {
+    background: color-mix(in oklab, var(--red), var(--base));
+  }
+  .diff_plus{
+        background: color-mix(in oklab, var(--green), var(--base));
+  }
+  .punctuation_special.diff_plus {
+    color: var(--green);
+  }
+  .attribute {
+    color: var(--mauve);
+  }
+}
+
+code.fish, code.sh, code.zig, code.lua {
+  .type, .type_builtin {
     color: var(--yellow);
   }
-  .operator {
+  .constant {
+    color: var(--text);
+  }
+  .function, .function_call {
+    color: var(--blue);
+  }
+  .punctuation_delimiter, .punctuation_bracket, .punctuation {
+    color: var(--subtext0);
+  }
+  .comment {
+    color: var(--overlay1);
+  }
+  .number {
     color: var(--peach);
+  }
+  .operator {
+    color: var(--teal);
   }
   .string {
     color: var(--green);
+  }
+  .keyword, .repeat, .keyword_repeat, .keyword_modifier, .modifier, .keyword_function {
+    color: var(--mauve);
+  }
+  .variable_parameter, .function_builtin {
+    color: var(--red);
   }
 }

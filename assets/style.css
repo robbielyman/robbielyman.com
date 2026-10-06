@@ -30,7 +30,7 @@
   --full-width: 850px;
 }
 
-math {
+math, code:not(pre *) {
   color: color-mix(in oklab, var(--blue), var(--subtext1));
 }
 
