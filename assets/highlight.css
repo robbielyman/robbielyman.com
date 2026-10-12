@@ -34,7 +34,7 @@ code.diff {
   }
 }
 
-code.fish, code.sh, code.zig, code.lua {
+code.fish, code.sh, code.zig, code.zon, code.lua {
   .type, .type_builtin {
     color: var(--yellow);
   }

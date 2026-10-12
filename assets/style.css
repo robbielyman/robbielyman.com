@@ -89,6 +89,14 @@ body {
   text-align: center;
 }
 
+pre {
+  display: block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: min(var(--full-width), 90%);
+  padding-bottom: 0.5rem;
+}
+
 nav {
   width: min(var(--full-width), 95%);
   margin-left: auto;

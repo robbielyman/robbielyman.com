@@ -65,3 +65,14 @@ on giving a great colloquium talk.
 > In this talk we will discuss how to extract this noncrossing data from a polynomial
 > and how it determines a compactification and cell structure for a space of polynomials.
 > This is joint work with Jon McCammond.
+
+## Spencer Leslie [](<$section.id("Spencer Leslie")>)
+
+### Title: L-functions and periods
+># [**Abstract**]($block.collapsible(true))
+> Zeta and L-functions play a central role in modern number theory.
+> In this talk, I will discuss some classical contexts where these functions and their properties arise
+> and how we can study them via a different kind of analytic object: a modular or automorphic form.
+> The process of relating a modular form to an L-function is by forming a "period integral".
+> My goal is to give a sense (through examples) of how the study of periods has taken a central place in modern number theory.
+> I will give an overview of some recent techniques and results in this area of research.

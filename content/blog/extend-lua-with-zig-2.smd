@@ -1,0 +1,66 @@
+---
+.title = "Extend Lua with Zig 2: Hello Lua",
+.date = .date("2026-10-06T21:00:00-04:00"),
+.layout = "post.shtml",
+.draft = true,
+---
+
+This is the second post in my series on extending Lua with Zig.
+In [the previous post]($link.page('blog/extend-lua-with-zig-1')),
+we talked about Hello World in Zig and wrote our first `build.zig` script.
+In this post our goal is to run Hello World again, but via Lua hosted by Zig.
+
+# Adding Ziglua
+
+We'll work with [Ziglua](https://github.com/natecraddock/ziglua),
+a fantastic project that Nate Craddock has maintained since 2022.
+Ziglua provides Zig bindings for the Lua C API.
+Zig has excellent native ability to work with C libraries (like Lua),
+so in a very strict sense, Ziglua is not necessary for what we'll do.
+The work that Ziglua does is translating Lua's C conventions for naming, errors and so forth
+into a more "Ziggy" style and making use of the language's affordances.
+
+In cases where I depend on a C library in a Zig project,
+I've often used Ziglua as an example
+for the kind of work I can do to make my life using the library better.
+If you get the itch, I highly recommend cracking open Ziglua's source.
+
+## Fetch
+
+To add Ziglua to our project, we'll run
+```bash
+zig fetch --save git+https://github.com/natecraddock/ziglua
+```
+
+This does a couple things:
++ We resolve the URL to a commit and to a tarball to download.
++ The tarball is downloaded to a directory called `zig-pkg` (and stripped, more later)
++ Information about the Zig package is written to a file called `build.zig.zon`
+
+If you didn't have a `build.zig.zon` file, well now you do.
+Running the above in a directory without a `build.zig.zon` results in approximately the following file
+
+```zon
+// build.zig.zon
+// NB: the fingerprint field depends on the name field,
+// the name field will be derived from the name of the directory it lives in.
+.{
+    .name = .hello_lua,
+    .version = "0.0.1",
+    .dependencies = .{
+        .zlua = .{
+            .url = "git+https://github.com/natecraddock/ziglua#8b2c14e0f9f89a9407dd7dd91752c7d8fd03cb62",
+            .hash = "zlua-0.1.0-hGRpC8yYBQAtI5hy60lb1vK9Tc7s-Ouu0aMFe2Kdc3_s",
+        },
+    },
+    .minimum_zig_version = "0.17.0",
+    .paths = .{""},
+    .fingerprint = 0x3c2bc4659f2dcf49, // changing this has trust and security implications
+}
+```
+
+## `build.zig.zon` also ZON
+
+Think of `build.zig.zon` as a kind of package manifest.
+You can see it lists some basic info about our project,
+like the name (which is, potentially confusingly, an "enum literal" rather than a string)
