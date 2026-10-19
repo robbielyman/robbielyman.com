@@ -25,15 +25,15 @@ on giving a great colloquium talk.
 | September 23 | [Luya Wang (IAS)](<$link.ref("Luya Wang")>) |
 | September 30 | [Michael Dougherty (Lafayette)](<$link.ref("Michael Dougherty")>) |
 | October 7 | *No Colloquium* |
-| October 14 | Spencer Leslie (Boston College, IAS) |
-| October 21 | TBD |
-| October 28 | Jeremy Brazas (West Chester) |
+| October 14 | [Spencer Leslie (Boston College, IAS)](<$link.ref("Spencer Leslie")>) |
+| October 21 | *No Colloquium* |
+| October 28 | [Jeremy Brazas (West Chester)](<$link.ref("Jeremy Brazas")>) |
 | November 4 | Timothy Bates (Rutgers New Brunswick) |
 | November 11 | Gabriel Corrigan (Glasgow) |
 | November 18 | Kristen Hendricks (Rutgers New Brunswick) |
 | November 25 | *No Colloquium* |
 | December 2 | Nate Fisher (Swarthmore) |
-| December 9 | Hannah Hoganson (UMD) |
+| December 9 | [Hannah Hoganson (UMD)](<$link.ref("Hannah Hoganson")>) |
 
 # Abstracts
 
@@ -59,7 +59,7 @@ on giving a great colloquium talk.
 ## Michael Dougherty [](<$section.id("Michael Dougherty")>)
 
 ### Title: Geometric Combinatorics for Complex Polynomials
-># [**Abstract**]($block.collapsible(true))
+># [**Abstract**]($block.collapsible(false))
 > Spaces of complex polynomials contain a surprising amount of combinatorial structure,
 > particularly in connections to noncrossing partitions.
 > In this talk we will discuss how to extract this noncrossing data from a polynomial
@@ -69,10 +69,37 @@ on giving a great colloquium talk.
 ## Spencer Leslie [](<$section.id("Spencer Leslie")>)
 
 ### Title: L-functions and periods
-># [**Abstract**]($block.collapsible(true))
+># [**Abstract**]($block.collapsible(false))
 > Zeta and L-functions play a central role in modern number theory.
 > In this talk, I will discuss some classical contexts where these functions and their properties arise
 > and how we can study them via a different kind of analytic object: a modular or automorphic form.
 > The process of relating a modular form to an L-function is by forming a "period integral".
 > My goal is to give a sense (through examples) of how the study of periods has taken a central place in modern number theory.
 > I will give an overview of some recent techniques and results in this area of research.
+
+## Jeremy Brazas [](<$section.id("Jeremy Brazas")>)
+
+### Title: The infinite earring group and its applications
+># [**Abstract**]($block.collapsible(true))
+> The infinite earring group, i.e. the fundamental group of a shrinking wedge of circles,
+> is one of the first examples of a fundamental group
+> that cannot be computed using standard methods in algebraic topology.
+> This group is uncountable, not free, and perhaps best thought of as an infinitary analogue of a free group.
+> In this talk, I’ll give a friendly introduction to the methods used to characterize this group and derive its properties.
+> I’ll also discuss how it has been applied in recent decades and mention a few open questions.
+
+## Hannah Hoganson [](<$section.id("Hannah Hoganson")>)
+
+### Title: A Tale of Three Geometries: Points, Hamming Cubes, and One-Ended Trees
+># [**Abstract**]($block.collapsible(true))
+> Many groups arise naturally as the symmetry group of a geometric or topological object.
+> In this talk we will focus on infinite but 0-dimensional topological spaces,
+> specifically those that arise as end spaces.
+> Their homeomorphism groups can be thought of as infinite analogs of symmetric groups.
+> We will start with an overview of some basic ideas in geometric group theory,
+> before focusing in on the homeomorphism groups of countable end spaces.
+> These are large topological groups, which are not finitely generated,
+> so classical tools and techniques don't apply.
+> Instead, we turn to descriptive set theoretic techniques of Rosendal
+> to study their large-scale geometry and present a trichotomy classification theorem.
+> This talk includes joint work with George Domat and Robbie Lyman.
