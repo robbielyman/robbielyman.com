@@ -1,0 +1,435 @@
+---
+.title = "Spaces of constant curvature",
+.date = .date("2026-10-26T20:00:00-04:00"),
+.layout = "post.shtml",
+.draft = false
+---
+This is a repost (lightly edited) of a post that I wrote in February 2024
+that got lost in the long dark teatime of the soul that ensued in the interim.
+
+# Spaces of constant curvature
+In this post, I want to kind of bring together the theme of curvature
+and the theme of affine or projective geometry.
+My goal is to introduce the _spaces of constant curvature_
+in a unified way as subspaces of Euclidean space
+and explore their symmetries as groups of matrices.
+
+# The [`n`]($mathtex)-sphere in [`\mathbb{R}^{n+1}`]($mathtex)
+Do you remember the equation for the unit circle?
+```=mathtex
+x^2 + y^2 = 1
+```
+This is a $1$-dimensional object living in the plane [`\mathbb{R}^2`]($mathtex),
+also affectionately known as [`\mathbb{R}^{1+1}`]($mathtex),
+and we can easily generalize this equation to [`\mathbb{R}^{n+1}`]($mathtex) as
+```=mathtex
+x_0^2 + x_1^2 + \cdots + x_n^2 = 1.
+```
+The set of points [`(x_0,\ldots,x_n)`]($mathtex)
+satisfying this equation make up the [`n`]($mathtex)-sphere sitting inside [`\mathbb{R}^{n+1}`]($mathtex).
+For like, precisely two values of [`n`]($mathtex), we know what to expect:
+the unit circle in [`\mathbb{R}^2`]($mathtex),
+and the unit _sphere_ in [`\mathbb{R}^3`]($mathtex).
+It's a joy to imagine what the unit [`n`]($mathtex)-sphere _feels_ like for other values of [`n`]($mathtex).
+For example, there ought to be a "[`0`]($mathtex)-sphere" sitting in [`\mathbb{R}^{0+1}`]($mathtex),
+and indeed there is:
+the two points [`x = \pm 1`]($mathtex) such that [`x^2 = 1`]($mathtex).
+
+Or the [`3`]($mathtex)-sphere, which is somehow like and unlike [`3`]($mathtex)-dimensional space.
+I won't push you too hard here, but if you want a brain-twister, try this on:
+If you take two disks (2-dimensional filled-in circles), say made out of plastic or silly putty,
+and imagined gluing or sewing them together along their boundary circle and then inflating them,
+you'd end up with a 2-dimensional sphere, or at least,
+something which you could reasonably expect to mold into the right shape.
+This actually generalizes: to go down a dimension, you'd be gluing two _intervals_ along their boundary points
+to obtain the circle [`S^1`]($mathtex).
+To go _up_ a dimension and get [`S^3`]($mathtex),
+you'd take two balls (3-dimensional filled-in spheres) and somehow glue their outsides together.
+You can't do this in reality, but it sure makes for something fun to try and think about correctly!
+
+Ah, the above was what I wrote just now in 2026, but I appear to have written still another funny brain-bender
+back in 2024, so here goes:
+
+If you'll permit me an aside,
+here is my favorite way to think of the [`3`]($mathtex)-sphere;
+actually it works for [`n`]($mathtex) arbitrary, but for 3 I can really picture something
+if I wrack my brain a little.
+Let's go back to the circle:
+pick a point on the circle, like say the point [`(0,1)`]($mathtex),
+and throw it away.
+What you're left with, if you kind of sit with it for a moment,
+is kind of like an _open interval_ in [`\mathbb{R}`]($mathtex),
+just curled up funny.
+Actually, you can do something pretty neat with these leftover points,
+called _stereographic projection._
+Imagine you're a little surveyor standing at the point [`(1,0)`]($mathtex) in [`\mathbb{R}^2`]($mathtex),
+and for each _other_ point [`(p,q)`]($mathtex) on the circle,
+it's your job to draw the straight line from [`(1,0)`]($mathtex) to [`(p,q)`]($mathtex) and extend it
+from a line segment to a whole ray.
+And then second, note down _where_ that line hits the [`y`]($mathtex)-axis.
+
+An equation for an arbitrary point on this line is [`(tp + (1-t), tq)`]($mathtex),
+so the point [`(0,y)`]($mathtex) on the line will be such that
+[`y = tq`]($mathtex) and [`tp + (1-t) = 0`]($mathtex).
+This latter equation implies that [`t = \frac{1}{1 - p}`]($mathtex),
+so [`y = \frac{q}{1 - p}`]($mathtex).
+
+In [`n`]($mathtex) dimensions, the equation for the line becomes
+```=mathtex
+t \mapsto (tx_0 + (1-t), tx_1,\ldots,tx_n) = t\mathbf{x}  + (1-t)\mathbf{e}_0,
+```
+and the point on the hyperplane [`x_0 = 0`]($mathtex) is
+```=mathtex
+\frac{\displaystyle (0, x_1, \ldots, x_n)}{1 - x_0}.
+```
+
+Anyway, it's clear that we can reverse this process:
+for _any_ point [`\mathbf{p}`]($mathtex)
+on the hyperplane [`x_0 = 0`]($mathtex),
+there is a _unique_ point [`\mathbf{q}`]($mathtex) on the unit [`n`]($mathtex)-sphere
+such that stereographic projection from [`(1,0,\ldots,0) = \mathbf{e}_0`]($mathtex)
+yields [`\mathbf{p}`]($mathtex).
+As the point [`\mathbf{q}`]($mathtex) gets closer and closer to [`\mathbf{e}_0`]($mathtex),
+the point [`\mathbf{p}`]($mathtex) goes "off to infinity".
+Thus, one way to think of the [`n`]($mathtex)-sphere is like [`n`]($mathtex)-dimensional space
+with one extra point at infinity that "wraps it all up"
+just like the circle is the real line (that open interval) wrapped up with one extra point.
+
+## Linear transformations and isometries
+
+One conceit of this post is that we love matrix multiplication.
+Consider a linear transformation of [`\mathbb{R}^{n+1}`]($mathtex),
+or equivalently an [`(n+1)\times(n+1)`]($mathtex) matrix.
+We want two things to happen:
+first our transformation (or matrix [`M`]($mathtex))
+should be _invertible_ in the sense that we can _undo_ it.
+If you remember linear algebra,
+you might know that this comes down to asking that the _determinant_ of [`M`]($mathtex) is nonzero.
+
+The other thing we want to have happen is that the matrix
+sends the unit sphere to itself.
+For this it helps to realize that the equation [`x_0^2 + cdots + x_n^2 = 1`]($mathtex)
+has a _vector_ interpretation:
+if [`\mathbf{x} = (x_0,\ldots,x_n)`]($mathtex),
+we have that the coordinates of [`\mathbf{x}`]($mathtex)
+satisfy the equation for the unit sphere if and only if the dot product satisfies
+```=mathtex
+\mathbf{x} \cdot \mathbf{x} = x_0^2 + \cdots + x_n^2 = 1.
+```
+This dot product may also be expressed as a matrix product
+[`\mathbf{x}^T \mathbf{x} = 1`]($mathtex),
+where we think of [`\mathbf{x}`]($mathtex)
+as an [`(n+1)\times 1`]($mathtex) _column_ vector
+and its transpose [`\mathbf{x}^T`]($mathtex)
+as the corresponding [`1 \times (n + 1)`]($mathtex) _row_ vector.
+
+For later, I want to point out the sneaky fact that
+we can put in _any_ [`(n+1)\times(n+1)`]($mathtex) between [`\mathbf{x}^T`]($mathtex)
+and [`\mathbf{x}`]($mathtex) and we'll still end up with a number.
+We'll stick with the identity matrix for now.
+
+Anyway, this actually helps us figure out what we want:
+[`M\mathbf{x}`]($mathtex) is also a column vector,
+and so for it to belong to the unit sphere, we want
+```=mathtex
+(M\mathbf{x})\cdot(M\mathbf{x}) = (M\mathbf{x})^T(M\mathbf{x})
+= \mathbf{x}^TM^T M\mathbf{x} = \mathbf{x}^T\mathbf{x} = 1.
+```
+This turns out to happen for _every_ choice of [`\mathbf{x}`]($mathtex)
+just when [`M^TM=I`]($mathtex), where [`I`]($mathtex)
+is the identity matrix with 1s on the main diagonal and 0s elsewhere.
+Actually this _implies_ that [`M`]($mathtex) is invertible,
+and furthermore that [`M M^T = 1`]($mathtex) as well,
+so that [`M^T`]($mathtex) is the inverse of [`M`]($mathtex).
+
+Let's suppose we're working with the unit circle in [`\mathbb{R}^2`]($mathtex)
+and that we have a symmetry [`M`]($mathtex)
+which sends the point [`(1,0)`]($mathtex) to [`(p,q)`]($mathtex).
+A neat linear algebra fact is that this means that the first column of [`M`]($mathtex)
+is [`(p,q)`]($mathtex)!
+Since we need [`M^TM = I`]($mathtex),
+if the other column is [`(c,d)`]($mathtex), we compute
+
+```=mathtex
+M^TM = \begin{pmatrix}p & q \\c & d\end{pmatrix}\cdot\begin{pmatrix}p & c \\q & d\end{pmatrix}
+= \begin{pmatrix}
+p^2 + q^2 & pc + qd \\
+cp + dq & c^2 + d^2
+\end{pmatrix}
+= \begin{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}
+```
+
+Since [`p^2 + q^2 = 1`]($mathtex),
+one of [`p`]($mathtex) or [`q`]($mathtex) is nonzero,
+so we can divide by it to see that (supposing it is [`p`]($mathtex))
+```=mathtex
+c = -\frac{qd}{p}.
+```
+Then [`c^2 + d^2 = 1`]($mathtex) implies [`\frac{q^2d^2}{p^2} + d^2 = 1`]($mathtex),
+so (doing some tricksy algebra) [`d^2 = p^2`]($mathtex).
+So either [`d = p`]($mathtex), in which case [`c = -q`]($mathtex),
+or [`d = -p`]($mathtex), in which case [`d = q`]($mathtex).
+That is, there are exactly two choices for [`M`]($mathtex),
+```=mathtex
+\begin{pmatrix}p & -q \\ q & p\end{pmatrix}\quad\text{ and }
+\quad\begin{pmatrix}p & q \\ q & -p\end{pmatrix}.
+```
+These are distinguished by the _sign of their determinant_
+or equivalently by whether they _preserve or reverse orientation,_
+meaning that one of them is more like a rotation,
+while the other is like a rotation followed by a flip.
+
+## Metrics
+
+There are two ways to think of the [`n`]($mathtex)-sphere
+as a metric space.
+The first is to restrict the metric from Euclidean space to the sphere.
+This works fine, but is a little weird:
+the distance on the circle from [`(1,0)`]($mathtex)
+to [`(0,1)`]($mathtex) would be their Euclidean distance [`\sqrt{2}`]($mathtex),
+but the actual _shortest path on the circle_ between these points
+is _longer;_ in fact it has length equal to the _arc length_ of the quarter circle it traces out.
+Since we "know" that the perimeter of a circle is [`2\pi`]($mathtex) times its radius,
+we should expect the distance on the circle between [`(1,0)`]($mathtex) and [`(0,1)`]($mathtex)
+to be [`\frac{pi}{2}`]($mathtex).
+
+This latter distance, measuring the _angle_ between [`\mathbf{p}`]($mathtex)
+and [`\mathbf{q}`]($mathtex)
+is connected to their dot product.
+For the unit sphere in general, we have that this angle [`\theta`]($mathtex)
+satisfies
+```=mathtex
+\cos\theta = \mathbf{p} \cdot \mathbf{q}.
+```
+(The formula holds in general if you additionally divide out the _norms_ of [`\mathbf{p}`]($mathtex)
+and [`\mathbf{q}`]($mathtex), which is unnecessary for our unit vectors.)
+Anyway, this distance,
+```=mathtex
+d(\mathbf{p},\mathbf{q}) = \arccos (\mathbf{p}\cdot\mathbf{q})
+```
+is called the _round metric_ on the unit sphere.
+In a post which has yet to be restored to this blog,
+we computed that the sectional curvature of this metric is constant and equal to 1.
+
+# Euclidean space
+
+In previous posts which have yet to be restored to this blog,
+we saw that _affine_ subspaces of [`\mathbb{R}^n`]($mathtex)
+may be productively thought of as _linear_ subspaces of [`\mathbb{R}^{n+1}`]($mathtex).
+If [`\{ \mathbf{p}_1, \ldots, \mathbf{p}_k \}`]($mathtex)
+are affinely independent points in [`\mathbb{R}^n`]($mathtex),
+they are a basis for the _linear_ subspace of [`\mathbb{R}^{n+1}`]($mathtex)
+spanned by the vectors [`\{\mathbf{v}_1,\ldots,\mathbf{v}_k\}`]($mathtex),
+where [`\mathbf{v}_i = (1,\mathbf{p}_i)`]($mathtex);
+that is, the 0th coordinate of [`\mathbf{v}_i`]($mathtex) is 1
+and the others are what they are in [`\mathbf{p}_i`]($mathtex).
+One reason for setting the first coordinate to something nonzero is that if
+one of the [`\mathbf{p}_i`]($mathtex) is the origin,
+thinking of it as a vector by adding a 0 is unproductive,
+since the zero vector is never part of a linearly independent set.
+
+Thus the line in [`\mathbb{R}^2`]($mathtex)
+through the points [`(3,7)`]($mathtex) and [`(4,5)`]($mathtex)
+corresponds to the linear subspace (a plane) in [`\mathbb{R}^3`]($mathtex)
+spanned by the vectors [`(1,3,7)`]($mathtex) and [`(1,4,5)`]($mathtex).
+Indeed, when you look at this plane in [`\mathbb{R}^3`]($mathtex),
+the places where it slices through the affine plane [`x_0 = 1`]($mathtex)
+forms a line which passes through our given points.
+
+If we take a column vector [`\mathbf{x} = (x_0,x_1,x_2)`]($mathtex)
+and a [`3\times3`]($mathtex) matrix [`M`]($mathtex),
+the first coordinate of the vector [`M\mathbf{x}`]($mathtex)
+is the _dot product_ of [`\mathbf{x}`]($mathtex)
+and the first row of [`M`]($mathtex)
+(interpreted as a column vector for you sticklers).
+In other words, if the first row of [`M`]($mathtex)
+is [`(m_{00}, m_{01}, m_{02})`]($mathtex),
+we have that the last coordinate of [`M\mathbf{x}`]($mathtex) is
+```=mathtex
+m_{00}x_0 + m_{01}x_1 + m_{02}x_2.
+```
+
+Supposing that [`\mathbf{x}`]($mathtex) determines a point
+on the affine plane [`x_0 = 1`]($mathtex).
+For [`M`]($mathtex) to preserve this property,
+we see that we must have [`m_{01} = m_{02} = 0`]($mathtex)
+while [`m_{00} = 1`]($mathtex).
+In other words, we can write [`M`]($mathtex)
+in _block_ form as
+```=mathtex
+M = \begin{pmatrix}
+1 & \mathbf{0} \\
+\mathbf{y} & A
+\end{pmatrix}
+```
+where [`A`]($mathtex) is a [`2\times2`]($mathtex)
+matrix, [`mathbf{y}`]($mathtex) is a column vector,
+and [`\mathbf{0}`]($mathtex) is the all-zeroes row vector.
+Invertible matrices of this form are part of the _affine group._
+This happens if and only if [`A`]($mathtex) is invertible.
+
+To be a _rigid motion_ of Euclidean space,
+we want _distances_ to be preserved.
+Recall that the _distance_ between vectors [`\mathbf{x}`]($mathtex)
+and [`\mathbf{y}`]($mathtex) is
+```=mathtex
+d(\mathbf{x},\mathbf{y}) = \|\mathbf{x} - \mathbf{y}\|
+= \sqrt{(\mathbf{x} - \mathbf{y}) \cdot (\mathbf{x} - \mathbf{y})}.
+```
+For vectors on the affine plane [`x_0 = 1`]($mathtex),
+the distance between vectors corresponds to the usual Euclidean distance between
+points, since the subtraction of vectors means the presence or absence of [`x_0`]($mathtex)
+does not change the calculation.
+
+Doing a little matrix multiplication,
+we see that in [`n`]($mathtex) dimensions,
+the image of the vector [`(1,\mathbf{x})`]($mathtex)
+under [`M`]($mathtex) as notated above is
+[`(1,A\mathbf{x}+\mathbf{y}`]($mathtex).
+Therefore the matrix [`M`]($mathtex)
+will preserve distances on the hyperplane [`x_0 = 1`]($mathtex)
+just when the matrix [`A`]($mathtex) satisfies
+```=mathtex
+A\mathbf{v} \cdot A\mathbf{w} = \mathbf{v} \cdot \mathbf{w}
+```
+for all [`n`]($mathtex)-dimensional column vectors [`\mathbf{v}`]($mathtex) and [`\mathbf{w}`]($mathtex).
+In other words, the matrix [`A`]($mathtex)
+turns out to be exactly one of the matrices from the previous section!
+That's pretty neat.
+
+Before going on, I want to point out one more thing:
+since [`A^T A = A A^T = I`]($mathtex),
+doing block matrix multiplication, we see that
+
+```=mathtex
+M^T\begin{pmatrix}0 & \mathbf{0} \\ \mathbf{0} & I \end{pmatrix}M =
+\begin{pmatrix}1 & \mathbf{y}^T \\ \mathbf{0} & A^T\end{pmatrix}\begin{pmatrix}0 & \mathbf{0}\\ \mathbf{0} & A
+\end{pmatrix} = \begin{pmatrix} 0 & \mathbf{0} \\ \mathbf{0} & I \end{pmatrix}.
+```
+
+So a matrix [`M`]($mathtex)
+preserving the affine hyperplane [`x_0 = 1`]($mathtex)
+is a rigid motion of Euclidean space if and only if it satisfies
+[`M^T g M = g`]($mathtex),
+where [`g`]($mathtex) is that funky block matrix in the middle above.
+
+
+# Hyperbolic space
+Okay, this one is slightly weird but very very cool.
+Earlier, we stipulated that an [`(n+1)times(n+1)`]($mathtex)
+matrix belonged to the symmetry group of [`S^n`]($mathtex)
+when it satisfied the equation [`M^T I M = I`]($mathtex).
+Crucially for the analogy I am making, the identity matrix has first diagonal entry 1.
+Just now, we saw that if we replace [`I`]($mathtex)
+with the matrix [`g`]($mathtex) which is diagonal
+with a 0 in the first diagonal entry and 1s otherwise,
+we get the rigid motions of Euclidean space thought of as an affine hyperplane
+(provided we also preserve the hyperplane).
+The curvature of Euclidean space is 0.
+It's extremely tempting, therefore, to see what happens when we let the first diagonal entry be [`-1`]($mathtex)!
+
+So let [`Q`]($mathtex)
+be the diagonal matrix with first entry [`-1`]($mathtex)
+and all other diagonal entries [`1`]($mathtex),
+and suppose that [`M`]($mathtex)
+satisfies [`M^T Q M = Q`]($mathtex).
+Notice that [`M`]($mathtex) preserves the (one-sheeted) _hyperboloid_
+comprising those points in [`\mathbb{R}^{n+1}`]($mathtex)
+satisfying
+```=mathtex
+-x_0^2 + x_1^2 + \cdots + x_n^2 = 1;
+```
+these are the vectors [`\mathbf{x}`]($mathtex)
+for which [`\mathbf{x}^T Q \mathbf{x} = 1`]($mathtex).
+But it actually also preserves the _two-sheeted_ hyperboloid
+```=mathtex
+\mathbf{x}^T Q \mathbf{x} = -x_0^2 + x_1^2 + \cdots + x_n^2 = -1.
+```
+
+One reason to prefer the two-sheeted hyperboloid is that it doesn't have a "hole",
+and another is that the two-sheeted hyperboloid contains the point [`(1,\mathbf{0})`]($mathtex),
+just as the sphere and the affine plane do.
+
+Since the matrix [`Q`]($mathtex) is invertible, the equation
+[`M^T Q M = Q`]($mathtex) implies that [`M`]($mathtex) is invertible
+(this was not automatic for [`g`]($mathtex) above).
+The _group_ of matrices satisfying this equation is kind of curious:
+an element of this group may swap the two sheets of the hyperboloid,
+or it may fix them.
+Let's suppose it fixes them,
+so that [`\mathbf{x}_0 > 0`]($mathtex) implies [`M\mathbf{x}_0 > 0`]($mathtex).
+
+Just as we found the _round metric_ on the [`n`]($mathtex)-sphere in 
+[`\mathbb{R}^{n+1}`]($mathtex),
+it would be nice to have a formula for the distance between two points on the hyperboloid.
+It's a little tough to know precisely what we're asking for here,
+but one reasonable thing to ask would be for
+_linear_ subspaces of [`\mathbb{R}^{n+1}`]($mathtex)
+to intersect one sheet of the hyperboloid in a _convex_ set.
+
+Let's start in [`\mathbb{R}^2`]($mathtex).
+Then the hyperbola is the set of points [`(x,y)`]($mathtex) satisfying [`x^2 - y^2 = 1`]($mathtex)
+and [`x > 0`]($mathtex).
+There are many ways to parametrize the hyperbola, but I'd like to argue that the best one
+is maybe the weirdest:
+```=mathtex
+t \mapsto (\cosh t, \sinh t).
+```
+The functions [`\cosh`]($mathtex) and [`\sinh`]($mathtex)
+are pronounced "kosh" (like as in "Oshkosh")
+and "cinch" (like as in "it'll be a cinch!" or if you say "sin"
+and follow it with a "ch" to make it rhyme with "clinch"),
+and you maybe met them once upon a time in Calculus.
+They're defined as
+```=mathtex
+\cosh x = \frac{e^x + e^{-x}}{2} \quad\text{ and }\quad \frac{e^x - e^{-x}}{2}.
+```
+
+Let's do a little math, shall we?
+Notice that first of all if we write [`a = e^x`]($mathtex), we can compute
+```=mathtex
+\cosh^2 x - \sinh^2 x = \frac{(a + \frac{1}{a})^2}{4} - \frac{(a - \frac{1}{a})}{4}
+= \frac{a^2 + 2 + \frac{1}{a^2}}{4} - \frac{a^2 - 2 + \frac{1}{a^2}}{4} = \frac{4}{4} = 1.
+```
+
+This, and the calculation [`\cosh 0 = 1`]($mathtex)
+shows that we really do parametrize the upper sheet of the hyperboloid.
+
+The reason I prefer this parametrization
+is that the _derivative_ of [`\sinh t`]($mathtex)
+is (one checks) [`\cosh t`]($mathtex)
+and vice versa.
+Thus the velocity vector of the curve [`(\cosh t, \sinh t)`]($mathtex)
+is the _unit vector_ [`(\sinh t,\cosh t)`]($mathtex)
+when we use [`\|\mathbf{x}\| = \sqrt{\mathbf{x}^TQ\mathbf{x}}`]($mathtex)
+as our funky way of measuring norms.
+
+This is significant, because it says that with respect to this _Minkowski norm,_
+the curve [`(\cosh t,\sinh t)`]($mathtex)
+is parametrized by arc length,
+so it makes sense to define the _distance_ between two points
+[`(\cosh s,\sinh s)`]($mathtex) and [`(\cosh t,\sinh t)`]($mathtex)
+on the hyperbola as [`|s - t|`]($mathtex)!
+
+Doing a little computation, note that we have
+```=mathtex
+\cosh s \cosh t - \sinh s \sinh t = \frac{e^{t - s} + e^{s - t}}{2} = \cosh (t - s).
+```
+In fact this generalizes:
+the distance between [`\mathbf{x}`]($mathtex) and [`\mathbf{y}`]($mathtex)
+is [`\operatorname{arccosh} |\mathbf{x}^T Q \mathbf{y}|`]($mathtex).
+
+As it turns out, this metric on the hyperboloid
+turns it into a Riemannian manifold of dimension [`n`]($mathtex)
+and constant sectional curvature [`-1`]($mathtex).
+Since the embedding of the hyperboloid into [`\mathbb{R}^{n+1}`]($mathtex)
+is not isometric
+(in the sense of Riemannian geometry, when [`\mathbb{R}^{n+1}`]($mathtex) has the ordinary Riemannian metric),
+we can't compute this directly from the definition of the hyperboloid,
+so the curvature tensor turns out to be actually useful.
+
+There's so much to say here (for one thing, I didn't even sketch the computation above),
+but this post is long in the tooth as it is, so I'll sign off here.
