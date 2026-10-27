@@ -19,7 +19,7 @@ Do you remember the equation for the unit circle?
 ```=mathtex
 x^2 + y^2 = 1
 ```
-This is a $1$-dimensional object living in the plane [`\mathbb{R}^2`]($mathtex),
+This is a 1-dimensional object living in the plane [`\mathbb{R}^2`]($mathtex),
 also affectionately known as [`\mathbb{R}^{1+1}`]($mathtex),
 and we can easily generalize this equation to [`\mathbb{R}^{n+1}`]($mathtex) as
 ```=mathtex
@@ -108,7 +108,7 @@ you might know that this comes down to asking that the _determinant_ of [`M`]($m
 
 The other thing we want to have happen is that the matrix
 sends the unit sphere to itself.
-For this it helps to realize that the equation [`x_0^2 + cdots + x_n^2 = 1`]($mathtex)
+For this it helps to realize that the equation [`x_0^2 + \cdots + x_n^2 = 1`]($mathtex)
 has a _vector_ interpretation:
 if [`\mathbf{x} = (x_0,\ldots,x_n)`]($mathtex),
 we have that the coordinates of [`\mathbf{x}`]($mathtex)
@@ -247,7 +247,7 @@ and the first row of [`M`]($mathtex)
 (interpreted as a column vector for you sticklers).
 In other words, if the first row of [`M`]($mathtex)
 is [`(m_{00}, m_{01}, m_{02})`]($mathtex),
-we have that the last coordinate of [`M\mathbf{x}`]($mathtex) is
+we have that the first coordinate of [`M\mathbf{x}`]($mathtex) is
 ```=mathtex
 m_{00}x_0 + m_{01}x_1 + m_{02}x_2.
 ```
@@ -266,7 +266,7 @@ M = \begin{pmatrix}
 \end{pmatrix}
 ```
 where [`A`]($mathtex) is a [`2\times2`]($mathtex)
-matrix, [`mathbf{y}`]($mathtex) is a column vector,
+matrix, [`\mathbf{y}`]($mathtex) is a column vector,
 and [`\mathbf{0}`]($mathtex) is the all-zeroes row vector.
 Invertible matrices of this form are part of the _affine group._
 This happens if and only if [`A`]($mathtex) is invertible.
@@ -319,7 +319,7 @@ where [`g`]($mathtex) is that funky block matrix in the middle above.
 
 # Hyperbolic space
 Okay, this one is slightly weird but very very cool.
-Earlier, we stipulated that an [`(n+1)times(n+1)`]($mathtex)
+Earlier, we stipulated that an [`(n+1)\times(n+1)`]($mathtex)
 matrix belonged to the symmetry group of [`S^n`]($mathtex)
 when it satisfied the equation [`M^T I M = I`]($mathtex).
 Crucially for the analogy I am making, the identity matrix has first diagonal entry 1.
@@ -385,7 +385,7 @@ and follow it with a "ch" to make it rhyme with "clinch"),
 and you maybe met them once upon a time in Calculus.
 They're defined as
 ```=mathtex
-\cosh x = \frac{e^x + e^{-x}}{2} \quad\text{ and }\quad \frac{e^x - e^{-x}}{2}.
+\cosh x = \frac{e^x + e^{-x}}{2} \quad\text{ and }\quad \sinh x = \frac{e^x - e^{-x}}{2}.
 ```
 
 Let's do a little math, shall we?
