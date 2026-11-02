@@ -28,7 +28,7 @@ on giving a great colloquium talk.
 | October 14 | [Spencer Leslie (Boston College, IAS)](<$link.ref("Spencer Leslie")>) |
 | October 21 | *No Colloquium* |
 | October 28 | [Jeremy Brazas (West Chester)](<$link.ref("Jeremy Brazas")>) |
-| November 4 | Timothy Bates (Rutgers New Brunswick) |
+| November 4 | [Timothy Bates (Rutgers New Brunswick)](<$link.ref("Timothy Bates")>) |
 | November 11 | Gabriel Corrigan (Glasgow) |
 | November 18 | Kristen Hendricks (Rutgers New Brunswick) |
 | November 25 | *No Colloquium* |
@@ -80,13 +80,27 @@ on giving a great colloquium talk.
 ## Jeremy Brazas [](<$section.id("Jeremy Brazas")>)
 
 ### Title: The infinite earring group and its applications
-># [**Abstract**]($block.collapsible(true))
+># [**Abstract**]($block.collapsible(false))
 > The infinite earring group, i.e. the fundamental group of a shrinking wedge of circles,
 > is one of the first examples of a fundamental group
 > that cannot be computed using standard methods in algebraic topology.
 > This group is uncountable, not free, and perhaps best thought of as an infinitary analogue of a free group.
 > In this talk, I’ll give a friendly introduction to the methods used to characterize this group and derive its properties.
 > I’ll also discuss how it has been applied in recent decades and mention a few open questions.
+
+## Timothy Bates [](<$section.id("Timothy Bates")>)
+
+### Title: A localization spectral sequence for knot Floer homology of freely 2-periodic knots
+># [**Abstract**]($block.collapsible(true))
+> A fundamental question in equivariant topology is
+> to understand the relationship between spaces equipped with a group action and the associated orbit space.
+> A knot that is set-wise preserved by a free involution on [`S^3`]($mathtex) is called a freely 2-periodic knot.
+> In joint work with Aakash Parikh, we produce a localization spectral sequence
+> from the knot Floer homology of a freely 2-periodic knot to the knot Floer homology
+> of its quotient knot in [`\mathbb{RP}^3`]($mathtex).
+> From this spectral sequence, we obtain a Smith-type rank inequality,
+> and we relate the 3-genus of the freely 2-periodic knot to the rational 3-genus of its quotient.
+> Our result is (one of) the latest in a family of results concerning localization spectral sequences in Heegaard Floer homology. 
 
 ## Hannah Hoganson [](<$section.id("Hannah Hoganson")>)
 
