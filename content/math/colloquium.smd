@@ -29,7 +29,7 @@ on giving a great colloquium talk.
 | October 21 | *No Colloquium* |
 | October 28 | [Jeremy Brazas (West Chester)](<$link.ref("Jeremy Brazas")>) |
 | November 4 | [Timothy Bates (Rutgers New Brunswick)](<$link.ref("Timothy Bates")>) |
-| November 11 | Gabriel Corrigan (Glasgow) |
+| November 11 | [Gabriel Corrigan (Glasgow)](<$link.ref("Gabriel Corrigan")>) |
 | November 18 | Kristen Hendricks (Rutgers New Brunswick) |
 | November 25 | *No Colloquium* |
 | December 2 | Nate Fisher (Swarthmore) |
@@ -91,7 +91,7 @@ on giving a great colloquium talk.
 ## Timothy Bates [](<$section.id("Timothy Bates")>)
 
 ### Title: A localization spectral sequence for knot Floer homology of freely 2-periodic knots
-># [**Abstract**]($block.collapsible(true))
+># [**Abstract**]($block.collapsible(false))
 > A fundamental question in equivariant topology is
 > to understand the relationship between spaces equipped with a group action and the associated orbit space.
 > A knot that is set-wise preserved by a free involution on [`S^3`]($mathtex) is called a freely 2-periodic knot.
@@ -101,6 +101,25 @@ on giving a great colloquium talk.
 > From this spectral sequence, we obtain a Smith-type rank inequality,
 > and we relate the 3-genus of the freely 2-periodic knot to the rational 3-genus of its quotient.
 > Our result is (one of) the latest in a family of results concerning localization spectral sequences in Heegaard Floer homology. 
+
+## Gabriel Corrigan [](<$section.id("Gabriel Corrigan")>)
+
+### Title: Loop braid groups and configurations of knots and links
+># [**Abstract**]($block.collapsible(true))
+> The aim of this talk is to tell a nice story, with various algebraic, topological, and combinatorial perspectives, about one of my favourite groups: the loop braid group.
+>
+> The space of all possible configurations of n points in a plane is intimately related with the classical braid group.
+> In the 1960s, Dahm gave a huge generalisation, defining "motion groups".
+> Despite encompassing many fundamental examples,
+> these groups have seen surprisingly little study over the last 60 years.
+> In this talk we will explore a one-dimension-higher analogue of the braid group:
+> the motion group of a link in 3-space.
+> If the link is the unlink, this motion group is the loop braid group,
+> which also has related algebraic and combinatorial incarnations.
+> I'll give a tour of these various viewpoints,
+> before going on to consider some recent work of both others and myself about wider classes of links.
+> There are no specific pre-requisites;
+> I am planning to make this talk accessible to anyone from first-year grad school onwards.
 
 ## Hannah Hoganson [](<$section.id("Hannah Hoganson")>)
 
