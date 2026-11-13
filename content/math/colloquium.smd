@@ -30,7 +30,7 @@ on giving a great colloquium talk.
 | October 28 | [Jeremy Brazas (West Chester)](<$link.ref("Jeremy Brazas")>) |
 | November 4 | [Timothy Bates (Rutgers New Brunswick)](<$link.ref("Timothy Bates")>) |
 | November 11 | [Gabriel Corrigan (Glasgow)](<$link.ref("Gabriel Corrigan")>) |
-| November 18 | Kristen Hendricks (Rutgers New Brunswick) |
+| November 18 | [Kristen Hendricks (Rutgers New Brunswick)](<$link.ref("Kristen Hendricks")>) |
 | November 25 | *No Colloquium* |
 | December 2 | Nate Fisher (Swarthmore) |
 | December 9 | [Hannah Hoganson (UMD)](<$link.ref("Hannah Hoganson")>) |
@@ -120,6 +120,26 @@ on giving a great colloquium talk.
 > before going on to consider some recent work of both others and myself about wider classes of links.
 > There are no specific pre-requisites;
 > I am planning to make this talk accessible to anyone from first-year grad school onwards.
+
+## Kristen Hendricks [](<$section.id("Kristen Hendricks")>)
+
+### Title: Symmetries of Knots and Khovanov's Homology
+># [**Abstract**]($block.collapsible(true))
+> A knot is an embedding of a circle into the three-sphere.
+> Knots are quite concrete and tractable objects,
+> but they have deep connections to three- and four-dimensional geometry,
+> which is generally much harder to visualize and understand.
+> One aspect of knot theory which has recently enjoyed a lot of attention
+> is knots preserved by some symmetry of the three-sphere;
+> today the symetry in question will mostly be a rotation with fixed set a circle disjoint from the knot.
+>       
+> Khovanov homology is an invariant of knots which was introduced around 2000.
+> It has a deceptively simple construction, easy to describe on a blackboard,
+> but encodes a wealth of geometric information.
+> However, it turns out to be difficult to extract any good statements about knot symmetry
+> from Khovanov homology in its original form.
+> We discuss various ways one might upgrade such a theory geometrically
+> to better understand its behavior in the presence of symmetry.
 
 ## Hannah Hoganson [](<$section.id("Hannah Hoganson")>)
 
